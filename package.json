@@ -1,0 +1,25 @@
+{
+  "name": "typescript_learning",
+  "version": "1.0.0",
+  "description": "a typescript and git learning project",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conango/typescriptLearning.git"
+  },
+  "author": "lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/conango/typescriptLearning/issues"
+  },
+  "homepage": "https://github.com/conango/typescriptLearning#readme",
+  "devDependencies": {
+    "gulp-typescript": "^3.1.3"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
