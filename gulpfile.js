@@ -37,4 +37,42 @@ gulp.task('tsc-test',function(){
     .js.pipe(gulp.dest('./temp/test/'));
 });
 
-gulp.task('default',['lint','tsc','tsc-tests']);
+var browserify = require('browserify'),
+    transform = require('vinyl-transform'),
+    uglify = require('gulp-uglify'),
+    sourcemaps = require('gulp-sourcemaps');
+
+var browserified = transform(function(filename){
+  var b =browserify({entries: filename,debug: true});
+  return b.bundle();
+});
+
+gulp.task('bundle-js',function(){
+  return gulp.src('./temp/source/js/main.js')
+    .pipe(browserified)
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./dist/source/js/'));
+});
+
+gulp.task('bundle-test',function(){
+  return gulp.src('./temp/test/**/**.test.js')
+    .pipe(browserified)
+    .pipe(gulp.dest('./dist/test'));
+});
+
+
+var runSequence = require('run-sequence');
+gulp.task('default',function(cb){
+  runSequence(
+    'lint',
+    ['tsc','tsc-tests'],
+    ['bundle-js','bundle-test'],
+    'karma',
+    'browser-sync',
+    cb
+  );
+});
+
+gulp.task('default',['lint','tsc','tsc-tests','bundle-js','bundle-test']);
