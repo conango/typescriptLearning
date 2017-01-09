@@ -62,6 +62,18 @@ gulp.task('bundle-test',function(){
     .pipe(gulp.dest('./dist/test'));
 });
 
+var karma = require("gulp-karma");
+gulp.task('karma',function(cb){
+  gulp.src('./dist/test/**/**.test.js')
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('end',cb)
+    .on('error',function(err){
+      throw err;
+    });
+});
 
 var runSequence = require('run-sequence');
 gulp.task('default',function(cb){
@@ -74,5 +86,7 @@ gulp.task('default',function(cb){
     cb
   );
 });
+
+
 
 gulp.task('default',['lint','tsc','tsc-tests','bundle-js','bundle-test']);

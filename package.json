@@ -17,8 +17,18 @@
   },
   "homepage": "https://github.com/conango/typescriptLearning#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
     "gulp": "^3.9.1",
-    "gulp-typescript": "^3.1.3"
+    "gulp-karma": "0.0.5",
+    "gulp-typescript": "^3.1.3",
+    "karma": "^1.3.0",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sinon": "^1.0.5",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
   },
   "dependencies": {
     "jquery": "^3.1.1"
