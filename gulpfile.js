@@ -87,6 +87,32 @@ gulp.task('default',function(cb){
   );
 });
 
+gulp.task('bundle',function(cb){
+  runSequence('build',[
+    'bundle-js','bundle-test'
+  ],cb);
+});
+
+gulp.task('test',function(cb){
+  runSequence('bundle',['karma'],cb);
+});
+
+var browserSync = require('browser-sync');
+gulp.task('browser-sync',['test'],function(){
+  browserSync({
+    server:{
+      baseDir:"./dist"
+    }
+  });
+return gulp.watch([
+  "./dist/source/js/**/*.js",
+  "./dist/source/css/**.css",
+  "./dist/test/**/**.test.js",
+  "./dist/data/**/**",
+  "./index.html"
+],[browserSync.reload]);
+});
+
 
 
 gulp.task('default',['lint','tsc','tsc-tests','bundle-js','bundle-test']);
