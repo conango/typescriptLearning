@@ -111,6 +111,7 @@ return gulp.watch([
   "./dist/data/**/**",
   "./index.html"
 ],[browserSync.reload]);
+
 });
 
 
